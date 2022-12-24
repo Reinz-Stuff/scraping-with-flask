@@ -70,7 +70,7 @@ def lets_redirect_about():
 
 
 @app.route("/redirect-contact")
-def lets_redirect_about():
+def lets_redirect_contact():
     return redirect(url_for('mycontact'))
 
 
