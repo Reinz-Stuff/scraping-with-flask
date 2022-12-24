@@ -1,4 +1,6 @@
 {% extends "main_layout.html" %}
 {% block content %}
     <a>{{ notive }}</a>
+    <a class="nav-item nav-link" href="{{ url_for('logout_req') }}"><input type="submit" class="btn btn-outline-info"
+                                value="Log Out"></a>
 {% endblock %}

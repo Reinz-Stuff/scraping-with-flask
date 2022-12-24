@@ -28,8 +28,14 @@ def myindex():
 
 @app.route("/success")
 def success_req():
-    notive = "You have successfully logged in...!"
+    notive = "You are logged in...!"
     return render_template('success.html', notive=notive)
+
+
+@app.route("/logout")
+def logout_req():
+    session.pop("email")
+    return redirect(url_for('myindex'))
 
 
 @app.route("/code")
