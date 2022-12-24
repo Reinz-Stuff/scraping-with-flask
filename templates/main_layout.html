@@ -8,8 +8,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>about</h2>
-    <h2>contact</h2>
+    <div>
+        <a href="{{ url_for('myindex') }}">Index</a> | <a href="{{ url_for('myabout') }}">About</a> | <a href="{{ url_for('mycontact') }}">Contact</a>
+    </div>
     {% block content %}{% endblock %}
 </body>
 </html>

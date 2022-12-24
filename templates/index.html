@@ -1,40 +1,43 @@
-<html>
+{% extends "main_layout.html" %}
+{% block content %}
+    <html>
 
-<head>
-</head>
+    <head>
+    </head>
 
-<body>
+    <body>
 
-</body>
-    <div>
-        {% for data in value %}
-        <li> {{ data }} </li>
-        {% endfor %}
-    </div>
-    <div>====================================</div>
-    <div>
-        {% if moods == "happy" %}
-        <p>She loves</p>
-        {% elif moods == "sad" %}
-        <p>She is also sad</p>
-        {% else %}
-        <p>She is sad</p>
-        {% endif %}
-    </div>
-    <div>====================================</div>
-    <div>
-        {% set day = "sunny friday" %}
-        <p>{{ day }}</p>
-    </div>
-    <div>====================================</div>
-    <div>
-        {% for data in value %}
-        {% if data == "monday" %}
-        <p>Today is a rainy Monday</p>
-        {% elif data == "sunday" %}
-        <p>Today is a snowy Sunday</p>
-        {% endif %}
-        {% endfor %}
-    </div>
-    <div>====================================</div>
-</html>
+    </body>
+        <div>
+            {% for data in value %}
+            <li> {{ data }} </li>
+            {% endfor %}
+        </div>
+        <div>====================================</div>
+        <div>
+            {% if moods == "happy" %}
+            <p>She loves</p>
+            {% elif moods == "sad" %}
+            <p>She is also sad</p>
+            {% else %}
+            <p>She is sad</p>
+            {% endif %}
+        </div>
+        <div>====================================</div>
+        <div>
+            {% set day = "sunny friday" %}
+            <p>{{ day }}</p>
+        </div>
+        <div>====================================</div>
+        <div>
+            {% for data in value %}
+            {% if data == "monday" %}
+            <p>Today is a rainy Monday</p>
+            {% elif data == "sunday" %}
+            <p>Today is a snowy Sunday</p>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div>====================================</div>
+    </html>
+{% endblock %}
