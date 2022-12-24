@@ -6,22 +6,24 @@ app.config["SECRET_KEY"] = "ThisIsMySecrectKey2022"
 
 @app.route("/", methods=["POST", "GET"])
 def myindex():
+    if "email" in session:
+        return redirect(url_for('success_req'))
+    else:
+        # If the submit button is clicked -> request post
+        if request.method == 'POST':
+            email = request.form['email']
+            password = request.form['password']
 
-    # If the submit button is clicked -> request post
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
+            # If email and password correct
+            if email == 'admin@gmail.com' and password == 'pass':
+                session['email'] = email
+                return redirect(url_for('success_req'))
 
-        # If email and password correct
-        if email == 'admin@gmail.com' and password == 'pass':
-            session['email'] = email
-            return redirect(url_for('success_req'))
+            # If email or password Incorrect
+            else:
+                return redirect(url_for('myindex'))
 
-        # If email or password Incorrect
-        else:
-            return redirect(url_for('myindex'))
-
-    return render_template("index.html")
+        return render_template("index.html")
 
 
 @app.route("/success")
@@ -38,19 +40,29 @@ def mycode():
     # conditioning/ if-else
     moods = "sad"  # if happy she loves, if not she is sad
 
-    # set variable
+    # if already logged in
+    if "email" in session:
+        return render_template("codes.html", value=days, moods=moods)
 
-    return render_template("codes.html", value=days, moods=moods)
+    # if not logged in
+    else:
+        return redirect(url_for('myindex'))
 
 
 @app.route("/about")
 def myabout():
-    return render_template("about.html")
+    if "email" in session:
+        return render_template("about.html")
+    else:
+        return redirect(url_for('myindex'))
 
 
 @app.route("/contact")
 def mycontact():
-    return render_template("contact.html")
+    if "email" in session:
+        return render_template("contact.html")
+    else:
+        return redirect(url_for('myindex'))
 
 
 # Parsing nilai Int, String
