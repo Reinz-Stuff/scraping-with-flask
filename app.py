@@ -4,16 +4,20 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = "ThisIsMySecrectKey2022"
 
 
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def myindex():
-    email = request.form['email']
-    password = request.form['password']
 
     # If the submit button is clicked -> request post
     if request.method == 'POST':
-        if email == 'admin' and password == 'pass':
+        email = request.form['email']
+        password = request.form['password']
+
+        # If email and password correct
+        if email == 'admin@gmail.com' and password == 'pass':
             session['email'] = email
             return redirect(url_for('success_req'))
+
+        # If email or password Incorrect
         else:
             return redirect(url_for('myindex'))
 
@@ -22,7 +26,8 @@ def myindex():
 
 @app.route("/success")
 def success_req():
-    return render_template('success.html')
+    notive = "You have successfully logged in...!"
+    return render_template('success.html', notive=notive)
 
 
 @app.route("/code")
