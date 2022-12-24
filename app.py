@@ -6,6 +6,27 @@ app.config["SECRET_KEY"] = "ThisIsMySecrectKey2022"
 
 @app.route("/")
 def myindex():
+    email = request.form['email']
+    password = request.form['password']
+
+    # If the submit button is clicked -> request post
+    if request.method == 'POST':
+        if email == 'admin' and password == 'pass':
+            session['email'] = email
+            return redirect(url_for('success_req'))
+        else:
+            return redirect(url_for('myindex'))
+
+    return render_template("index.html")
+
+
+@app.route("/success")
+def success_req():
+    return render_template('success.html')
+
+
+@app.route("/code")
+def mycode():
     # belajar looping
     days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
@@ -14,7 +35,7 @@ def myindex():
 
     # set variable
 
-    return render_template("index.html", value=days, moods=moods)
+    return render_template("codes.html", value=days, moods=moods)
 
 
 @app.route("/about")
