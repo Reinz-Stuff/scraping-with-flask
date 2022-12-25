@@ -1,0 +1,28 @@
+{% extends "main_layout.html" %}
+{% block content %}
+<body>
+
+<div class="container">
+  <h2>Sending data (list/dictionary) to the HTML template</h2>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Fruit Name</th>
+        <th>Animal Name</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for nos, fruits, animals in datable["no"] | zip(datable["fruit"], datable["animal"]) %}
+      <tr>
+        <td>{{ nos }}</td>
+        <td>{{ fruits }}</td>
+        <td>{{ animals }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+</body>
+{% endblock %}

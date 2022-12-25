@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session, redirect, url_for
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "ThisIsMySecrectKey2022"
+app.jinja_env.filters["zip"] = zip
 
 
 @app.route("/", methods=["POST", "GET"])
@@ -51,6 +52,19 @@ def mycode():
         return render_template("codes.html", value=days, moods=moods)
 
     # if not logged in
+    else:
+        return redirect(url_for('myindex'))
+
+
+@app.route("/table")
+def mytable():
+    data_json = {
+        "no": [1, 2, 3, 4, 5, 6, 7, 8],
+        "fruit": ["mango", "melon", "watermelon", "pinaple", "orange", "strawberry", "blueberry", "apple"],
+        "animal": ["bear", "pig", "cat", "dog", "horse", "comodo", "lion", "wolf"]
+    }
+    if "email" in session:
+        return render_template("table.html", datable=data_json)
     else:
         return redirect(url_for('myindex'))
 
